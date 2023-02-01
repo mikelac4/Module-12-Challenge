@@ -142,3 +142,37 @@ function addRole() {
             });
         });
 }
+
+function addEmployee() {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'empFirst',
+                message: "What is the employee's first name?"
+            },
+            {
+                type: 'input',
+                name: 'empLast',
+                message: "What is the employee's last name?"
+            },
+            {
+                type: 'input',
+                name: 'roleId',
+                message: "What is the employee's role id?"
+            },
+            {
+                type: 'input',
+                name: 'managerId',
+                message: "What is the manager id number?"
+            }
+        ])
+        .then(function(answer) {
+            connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answer.empFirst, answer.empLast, answer.roleId, answer.managerId],
+            function(err, res) {
+                if (err) throw err;
+                console.table(res);
+                startApp();   
+            });
+        });
+}
