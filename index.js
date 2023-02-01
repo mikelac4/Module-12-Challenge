@@ -94,7 +94,25 @@ function viewEmployee() {
         if (err) throw err;
         console.table(res);
         startApp();
-    })
+    });
+}
+
+function addDepartment() {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'depName',
+                message: 'What is the department name?'
+            }
+        ])
+        .then(function(answer) {
+            connection.query("INSERT INTO department (name) VALUES (?)", [answer.depName], function(err, res) {
+                if (err) throw err;
+                console.table(res);
+                startApp();
+            });
+        });
 }
 
 
