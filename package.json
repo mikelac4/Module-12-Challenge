@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/mikelac4/Module-12-Challenge/issues"
   },
-  "homepage": "https://github.com/mikelac4/Module-12-Challenge#readme"
+  "homepage": "https://github.com/mikelac4/Module-12-Challenge#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "dotenv": "^16.0.3",
+    "env": "^0.0.2",
+    "inquirer": "^8.2.4",
+    "mysql2": "^2.3.3"
+    
+
+  }
 }
+
