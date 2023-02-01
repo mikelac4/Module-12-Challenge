@@ -3,21 +3,23 @@ const mysql = require('mysql2');
 const table = require('console.table');
 require('dotenv').config()
 
-const Connection = mysql.createConnection(
+const connection = mysql.createConnection(
     {
-        host: 'localhost',
-        user: 'root',
-        password: process.env.PASSWORD,
-        database: 'employee_db' 
+      host: 'localhost',
+      user: 'root',
+      password: process.env.DB_PASSWORD,
+      database: 'employee_db'
     },
-);
+    console.log(`Connected to the employee_db database.`)
+  );
+  
+  connection.connect(function (err) {
+      if (err) {
+          console.error("error connecting: " + err.stack);
+          return;
+      }
+  });
 
-connection.connect(function (err) {
-    if (err) {
-        console.error("error connecting: " + err.stack);
-        return;
-    }
-});
 
 startApp();
 
@@ -56,6 +58,7 @@ function startApp() {
 
                 case 'Add A Department':
                     addDepartment();
+                    break;
 
                 case 'Add A Role':
                     addRole();
@@ -65,20 +68,19 @@ function startApp() {
                     addEmployee();
                     break;
 
-                case 'Update An Employee Roles':
+                case 'Update An Employee Role':
                     updateRole();
                     break;
 
-                case 'Exit':
-                    Connection.end()
-                    return;
+                default:
+                    exit();
             }
         });
 
 }
 
 function viewDepartment() {
-    let query = "SELECT * FROM role";
+    let query = "SELECT * FROM department";
     connection.query(query, function(err, res) {
         if (err) throw err;
         console.table(res);
@@ -205,4 +207,9 @@ function updateRole() {
                 startApp();
             });
         });
+}
+
+function exit() {
+    connection.end();
+    process.exit();
 }
