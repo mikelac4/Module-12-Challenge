@@ -1,0 +1,19 @@
+{
+  "name": "module-12-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikelac4/Module-12-Challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikelac4/Module-12-Challenge/issues"
+  },
+  "homepage": "https://github.com/mikelac4/Module-12-Challenge#readme"
+}
