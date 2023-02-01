@@ -176,3 +176,26 @@ function addEmployee() {
             });
         });
 }
+
+function updateRole() {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'empUpdate',
+                message: "What employee do you want to update?"
+            },
+            {
+                type: 'input',
+                name: 'roleUpdate',
+                message: 'What role do you want to update'
+            }
+        ])
+        .then(function(answer) {
+            connection.query('UPDATE employee SET role_id=? WHERE first_name=?', [answer.empUpdate, answer.roleUpdate], function(err, res) {
+                if (err) throw err;
+                console.table(res);
+                startApp();
+            });
+        });
+}
