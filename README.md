@@ -28,6 +28,9 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 ## Screenshot
 
+![choices](https://user-images.githubusercontent.com/112447725/216202815-60897883-62d2-44bf-92b3-6779a6206459.png)
+![views](https://user-images.githubusercontent.com/112447725/216202826-defba2de-871f-47b8-9762-de49c422d770.png)
+![adds](https://user-images.githubusercontent.com/112447725/216202839-c2ded75a-060b-4a95-9d9a-dee76fe4f5f1.png)
 
 
 ## Links
