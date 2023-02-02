@@ -186,27 +186,48 @@ function addEmployee() {
         });
 }
 
+
 function updateRole() {
-    inquirer
-        .prompt([
-            {
-                type: 'input',
-                name: 'empUpdate',
-                message: "What employee do you want to update?"
-            },
-            {
-                type: 'input',
-                name: 'roleUpdate',
-                message: 'What role do you want to update'
+    connection.query("SELECT * FROM employee", function (err, data) {
+        if (err) throw err;
+
+        let employees = [];
+        let roles = [];
+
+        for (let i = 0; i < data.length; i++) {
+            employees.push(data[i].first_name)
+        }
+
+        connection.query("SELECT * FROM role", function (err, data) {
+            if (err) throw err;
+            for (let i = 0; i < data.length; i++) {
+                roles.push(data[i].title)
             }
-        ])
-        .then(function(answer) {
-            connection.query('UPDATE employee SET role_id=? WHERE first_name=?', [answer.empUpdate, answer.roleUpdate], function(err, res) {
-                if (err) throw err;
-                console.table(res);
-                startApp();
+        
+        inquirer
+            .prompt([
+                {
+                    type: 'list',
+                    name: 'employee_id',
+                    message: 'What employee needs their role updated?',
+                    choices: employees
+                },
+                {
+                    type: 'list',
+                    name: 'role_id',
+                    message: 'What is the updated role?',
+                    choices: roles
+                }
+            ])
+            .then(function (employee_id, role_id) {
+                connection.query(`UPDATE employee SET role_id = ${roles.indexOf(role_id) + 1} WHERE id = ${employees.indexOf(employee_id) + 1}`, function (err, data) {
+                    if (err) throw err;
+                    startApp();
+                });
             });
         });
+    });
+         
 }
 
 function exit() {
